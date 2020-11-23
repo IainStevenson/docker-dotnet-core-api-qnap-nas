@@ -6,10 +6,10 @@ This application is just a wrapper around docker, with a custom user interface.
 ## Environment setup
 
 - Windows 10 X64 Professional
-- Docker for Windows 17.06.2
-- Visual Studio 2017 Enterprise 15.5.4
-- QNAP Nas TS-253A 4.3.4.0483
-- Container Station 1.8.3031
+- Docker for Windows 19.03.13
+- Visual Studio 2017 Enterprise 16.7.6
+- QNAP Nas TS-453A 4.5.1.1465
+- Container Station 2.1.3.1360
 - QNAP Docker Version 17.07.0-ce
 
 
@@ -42,6 +42,11 @@ Follow the steps below to do it:
 The latest update of container station, updated both docker server and client, so the default Dockerfile can e used without the need of customization.
 
 ## Deployment process
+
+The build.sp1 script uses psake and powershell commands and routines necessary to build and run a new image and container on your NAS.
+
+You will need to run it from a powershell window outside of visual studio. It is not necessary to run it with administrator privileges.
+
 Using the task *Publish* the script will automatically:
 - Stop the existing container 
 - Remove the existing container
@@ -58,7 +63,7 @@ To generate a random mac address I use [this tool](https://justynshull.com/macge
 
 ## Execute the deployment
 My PowerShell script uses [PSake](https://github.com/psake/psake) to handle the deployment process.
-To install Psake open PowerShell and execute the following command:
+To install Psake open PowerShell with administator privileges and execute the following command:
 
 `Install-Package psake `
 
@@ -75,7 +80,16 @@ If you want to see which other tasks are available, check the content of the bui
 
 Now browse the following url, to view the Values controller result:
 
-`http://192.168.0.142/api/values `
+`http://192.168.0.141/api/values `
+
 
 ## Troubleshooting
 If running the PowerShell script you receive this error: error MSB4236: The SDK 'Microsoft.Docker.Sdk' specified could not be found.
+
+### Resolving source ambiguity
+
+PS C:\WINDOWS\system32> Install-Package psake
+WARNING: 'psake' matched package 'psake/4.9.0' from provider: 'PowerShellGet', source 'PSGallery'.
+WARNING: 'psake' matched package 'psake/4.9.0' from provider: 'NuGet', source 'nuget.org'.
+
+`Install-Package psake -source PSGallery`
