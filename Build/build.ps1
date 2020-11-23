@@ -6,9 +6,9 @@ properties {
 	# Host name of the container, based on the network configuration this can be used to access the container from the LAN (eg http://api/...)
 	$hostname = "api"
 	# MAC address, this must be unique in the LAN, can be generated on-line and is useful for DHCP reservation
-	$containerMacAddress = "00:0C:29:E8:24:F4"
+	$containerMacAddress = "00:16:3E:F3:B0:E0"
 	# Static IP Address assigned to the container
-	$containerIpAddress = "192.168.0.142"
+	$containerIpAddress = "192.168.0.141"
 	# Gateway address, normally the Router
 	$gatewayIpAddress = "192.168.0.1"
 	# Subnet used to configure the docker network
@@ -30,7 +30,7 @@ properties {
 	# Build configuration	
     $buildConfiguration = "Release"
 	# URI to access the NAS Docker Server instance
-	$containerUrl = "tcp://nas.home:2376"
+	$containerUrl = "tcp://192.168.0.250:2376"
 	# Log Volume, used to store logs outside the container in a shared folder accessible from the LAN
 	$logsVolumePath = "/share/Container/Logs"
 	# Flag Local can be used to ignore the NAS deployment, if true, the image and the container will be created in the local Docker Server
